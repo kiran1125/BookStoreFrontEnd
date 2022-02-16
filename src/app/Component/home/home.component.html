@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div class="main-content">
+
+    <div class="main-header">
+        <label class="book-text">Books </label>
+        <label class="items">(10)</label>
+        <select class="selectBox">
+            <option>Sort By Relevance</option>
+            <option>Price:Low to High</option>
+            <option>Price:High to Low</option>
+            <option>Newest Arrivals</option>
+        </select>
+    </div>
+    <div class="main">
+        <div class="book" *ngFor="let item of bookList" >
+            <div class="image-content">
+                <button class="book-button">
+                    <img class="image" src={{item.bookLogo}}>
+                </button>
+            </div>
+            <div class="book-name row-content"> {{item.bookName}} </div>
+            <div class="author-name row-content">{{item.bookAuthor}}</div>
+            <div class="row-content">
+                <div class="price">Rs. {{item.bookPrice}}</div>
+            </div>
+            <div>
+                <button (click)="addToCart(item)" class="buttons" >ADD TO BAG</button>
+                <button class="buttons">WISHLIST</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+</div>
