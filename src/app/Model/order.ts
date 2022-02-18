@@ -12,4 +12,6 @@ export class Order {
         this.userId = userId;
         this.bookId = bookId;
     }
+
 }
+

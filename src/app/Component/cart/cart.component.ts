@@ -18,11 +18,19 @@ export class CartComponent implements OnInit {
   totalPrice=0;
   edituseraddressform : any;
   address: any;
+  orderDetails : any;
   // orderData :Order = new Order();
 
   constructor(private router : Router,private placeorder:PlaceOrderService,private formBuilder: FormBuilder,private cartService : CartserviceService) { }
 
   ngOnInit() {
+    this.edituseraddressform = this.formBuilder.group({
+      fullName: [''],
+      mobileNumber: [''],
+      address: [''],
+      city: [''],
+      state: [''],
+    });
     
 
     this.getProductOfCart();
@@ -51,23 +59,19 @@ export class CartComponent implements OnInit {
 
     this.totalPrice = this.item_qty * book.book.bookPrice;
 
-    this.edituseraddressform = new FormGroup({
-      fullName: new FormControl(''),
-      mobileNumber: new FormControl(''),
-      address: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-    });
+    
 
     this.address = JSON.stringify(this.edituseraddressform.value);
     
-    const orderData = new Order(this.totalPrice,this.item_qty,this.address.value,book.user.userId,book.book.bookId);
+    const orderData = new Order(this.totalPrice,this.item_qty,this.address,book.user.userId,book.book.bookId);
 
 
     this.placeorder.placeOrder(orderData,this.token).subscribe(response=> {
-      console.log(response);
-    console.log(this.address)
+      this.orderDetails=response;
+      console.log(this.orderDetails);
     });
+
+    this.placeorder.setOrder(this.orderDetails);
 
     // this.router.navigate(['placeorder']);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlaceOrderService } from 'src/app/Service/place-order.service';
 import { CartComponent } from '../cart/cart.component';
 
 @Component({
@@ -9,11 +10,14 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class PlaceOrderComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  orderDetails:any;
+
+  constructor(private router:Router,private placeOrder:PlaceOrderService) { }
 
   
 
   ngOnInit() {
+    this.orderDetails=this.placeOrder.getOrder();
   }
 
   onhomepage(){

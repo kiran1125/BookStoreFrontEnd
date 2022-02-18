@@ -59,20 +59,20 @@
         </mat-expansion-panel-header>
 
         <div fxLayout="row" fxLayoutAlign="centercenter" fxLayoutGap="30px">
-            <form >
+            <form [formGroup]="edituseraddressform">
                 <div style="display: flex;flex-direction: column;">
                     <div style="display: flex;flex-direction: row;">
 
                         <mat-form-field appearance="outline">
 
-                            <input matInput placeholder="fullName" >
+                            <input matInput placeholder="fullName" formControlName="fullName">
                             <mat-error style="color: red;">
                                 Full Name is required</mat-error>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
 
-                            <input matInput placeholder="mobileNumber" >
+                            <input matInput placeholder="mobileNumber" formControlName="mobileNumber">
                             <mat-error style="color: red;">
                                 mobileNumber is required</mat-error>
                         </mat-form-field>
@@ -80,19 +80,19 @@
 
                     <div>
                         <mat-form-field style="width: 550px;" appearance="outline">
-                            <input matInput placeholder="address" >
+                            <input matInput placeholder="address" formControlName="address">
                             <mat-error style="color: red;">
                                 address is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="centercenter" fxLayoutGap="5px">
                         <mat-form-field appearance="outline">
-                            <input matInput placeholder="city/town">
+                            <input matInput placeholder="city/town" formControlName="city">
                             <mat-error style="color: red;">
                                 city/town is required</mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <input matInput placeholder="state" >
+                            <input matInput placeholder="state" formControlName="state">
                             <mat-error style="color: red;">
                                 state is required</mat-error>
                         </mat-form-field>
@@ -139,8 +139,9 @@
                 </div>
             </div>
             <mat-divider style="margin-top: 10px;"></mat-divider>
-        </div>
-        <button  class="placeorder" style="color: white;float: right;">CheckOut</button>
+        
+        <button (click)="placeorderData(book)" class="placeorder" style="color: white;float: right;">CheckOut</button>
+    </div>
     </mat-expansion-panel>
 
 </mat-accordion>

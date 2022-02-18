@@ -6,12 +6,24 @@ import { Injectable } from '@angular/core';
 })
 export class PlaceOrderService {
 
+  orderDetails : any;
+
   baseURL = "http://localhost:8080/Order/placeOrder";
 
   constructor(private http : HttpClient) { }
 
-  placeOrder(orderData:any,token : any){
+  placeOrder(token : any,orderData:any){
     return this.http.post(this.baseURL,orderData,{headers: new HttpHeaders({token})});
 
   }
+
+  setOrder(data:any){
+    this.orderDetails = data;
+  }
+
+  getOrder(){
+    return this.orderDetails;
+  }
+
+
 }
